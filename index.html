@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/vue.js"></script>
+  <title>Add User Event</title>
+</head>
+<body>
+  
+  <header>
+    <h1>Add a Users</h1>
+  </header>
+  <section id="event" class="event">
+    <div class="container">
+      <form action="#">
+        <div class="fullname">
+          <label for="fullname">Fullname:</label>
+          <input @input="addName" type="fullname" name="fullname" id="fn" required>
+        </div>
+        <div class="email">
+          <label for="email">Email:</label>
+          <input @input="addEmail" type="email" name="email" id="em" required>
+        </div>
+        <div class="submit">
+          <p v-if="fullname === '' || email === ''" class="message">The Submit Button Will Show After You Fill All the field</p>
+          <input v-else  @click="addUser" type="button" name="button" id="button" value="Submit" onclick="clearField()">
+        </div>
+      </form>
+    </div>
+    <div class="con">
+      <button class="toggle" @click="toggleBtn">{{buttonValue}}</button>
+    </div>
+    <div class="container"  v-show="toggle === false">
+      <h2>List Of the Users</h2>
+      <ul class="items" v-show="btn === true">
+        <li v-for="(user, index) in users" :key="user">
+          Name: {{user}}
+          <button @click="removeBtn(index)">Remove</button>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
